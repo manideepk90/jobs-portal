@@ -1,6 +1,8 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import { Lexend_Giga } from "next/font/google";
+import JobsFilter from "@/ui/components/JobsFilter";
+import JobsList from "@/ui/components/JobsList";
 
 const lexendGiga = Lexend_Giga({ subsets: ["latin"] });
 export default function Home() {
@@ -20,7 +22,8 @@ export default function Home() {
         ></link>
       </Head>
       <main className={`${styles.main} ${lexendGiga.className}`}>
-        manideep
+        <JobsFilter />
+        <JobsList/>
       </main>
     </>
   );
