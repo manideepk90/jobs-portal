@@ -4,7 +4,7 @@ import { Lexend_Giga } from "next/font/google";
 import JobsFilter from "@/ui/components/JobsFilter";
 import JobsList from "@/ui/components/JobsList";
 
-const lexendGiga = Lexend_Giga({ subsets: ["latin"] });
+const lexendGiga = Lexend_Giga({ subsets: ["latin"], weight : ["400","600","500"] });
 export default function Home() {
   return (
     <>
