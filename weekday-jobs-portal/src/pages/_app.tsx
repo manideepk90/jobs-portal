@@ -3,15 +3,17 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { AppCacheProvider } from "@mui/material-nextjs/v13-pagesRouter";
 import type { AppProps } from "next/app";
 import theme from "@/utils/theme";
+import { wrapper} from "@/utils/store/store";
+import { FC } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <AppCacheProvider {...pageProps}>
+const MyApp : FC<AppProps>= ({Component, ...rest}) =>
+   {
+  const { store, props} = wrapper.useWrappedStore(rest)
+  return ( <AppCacheProvider {...rest.pageProps}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
-        <Component {...pageProps} />
+        <Component {...rest.pageProps} />
       </ThemeProvider>
-    </AppCacheProvider>
-  );
+    </AppCacheProvider>);
 }
+ export default MyApp;

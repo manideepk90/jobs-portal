@@ -19,7 +19,9 @@ export default function Home() {
           href="https://firebasestorage.googleapis.com/v0/b/weekday-works.appspot.com/o/referal-website-assets%2Ffavicon-64.png?alt=media"
         ></link>
       </Head>
-      <main className={`${styles.main} ${lexendGiga.className}`}> Manideep</main>
+      <main className={`${styles.main} ${lexendGiga.className}`}>
+        manideep
+      </main>
     </>
   );
 }
