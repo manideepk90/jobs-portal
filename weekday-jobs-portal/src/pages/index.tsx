@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { Lexend_Giga } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const lexendGiga = Lexend_Giga({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
@@ -21,7 +19,7 @@ export default function Home() {
           href="https://firebasestorage.googleapis.com/v0/b/weekday-works.appspot.com/o/referal-website-assets%2Ffavicon-64.png?alt=media"
         ></link>
       </Head>
-      <main className={`${styles.main} ${inter.className}`}></main>
+      <main className={`${styles.main} ${lexendGiga.className}`}> Manideep</main>
     </>
   );
 }
