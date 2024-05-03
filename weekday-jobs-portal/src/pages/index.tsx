@@ -16,7 +16,10 @@ export default function Home() {
           content="Looking for opportunities? Use Weekday jobs to find thousands of job opportunities"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href="https://firebasestorage.googleapis.com/v0/b/weekday-works.appspot.com/o/referal-website-assets%2Ffavicon-64.png?alt=media"
+        ></link>
       </Head>
       <main className={`${styles.main} ${inter.className}`}></main>
     </>
