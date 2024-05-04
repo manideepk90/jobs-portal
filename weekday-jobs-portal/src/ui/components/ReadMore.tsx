@@ -7,15 +7,16 @@ const ExpansionText = styled(Typography)({
   textAlign: "center",
   cursor: "pointer",
 });
+interface ReadMore {
+  data: string;
+  maxChar: number;
+  fontSize?: string;
+}
 export default function ReadMore({
   data,
   maxChar = 300,
   fontSize = "14px",
-}: {
-  data: string;
-  maxChar: number;
-  fontSize?: string;
-}) {
+}: ReadMore) {
   const [expanded, setExpanded] = useState(false);
   const JobDescription = styled(Typography)({
     whiteSpace: "pre-wrap",

@@ -1,6 +1,5 @@
 import { Box, styled, Typography, Button } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import ReadMore from "./ReadMore";
 const Container = styled(Box)({
   maxWidth: "360px",
@@ -15,22 +14,7 @@ const Container = styled(Box)({
     transform: "scale(1.025)",
   },
 });
-export default function JobItem() {
-  const data = {
-    jdUid: "cfff35ac-053c-11ef-83d3-06301d0a7178-92010",
-    jdLink: "https://weekday.works",
-    jobDetailsFromCompany:
-      "This is a sample job and you must have displayed it to understand that its not just some random lorem ipsum text but something which was manually written. Oh well, if random text is what you were looking for then here it is: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages and now in this assignment.",
-    maxJdSalary: 61,
-    minJdSalary: null,
-    salaryCurrencyCode: "USD",
-    location: "delhi ncr",
-    minExp: 3,
-    maxExp: 6,
-    jobRole: "frontend",
-    companyName: "Dropbox",
-    logoUrl: "https://logo.clearbit.com/dropbox.com",
-  };
+export default function JobItem({ data }: { data: any }) {
   const CompanyName = styled(Typography)({
     fontSize: "13px",
     fontWeight: 600,
@@ -69,7 +53,7 @@ export default function JobItem() {
     backgroundColor: "rgb(85, 239, 196)",
     color: "rgb(0, 0, 0)",
     fontWeight: 500,
-    fontSize : "16px",
+    fontSize: "16px",
     padding: "8px 18px",
     borderRadius: "8px",
     margin: "5px 0",

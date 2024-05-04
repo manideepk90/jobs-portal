@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux";
 import JobItem from "./JobItem";
-import { Box, styled } from "@mui/material";
+import { Box, styled, CircularProgress } from "@mui/material";
+import { headers } from "next/headers";
 const Container = styled(Box)({
   display: "flex",
   flexWrap: "wrap",
@@ -9,15 +11,17 @@ const Container = styled(Box)({
 });
 
 export default function JobsList() {
+  const { jobs, isLoading } = useSelector((state: any) => state.jobs);
+
   return (
     <Container>
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
-      <JobItem />
+      {jobs?.length > 0 &&
+        jobs?.map((ele: any) => <JobItem data={ele} key={ele?.jdUid} />)}
+      {isLoading && (
+        <Box>
+          <CircularProgress />
+        </Box>
+      )}
     </Container>
   );
 }
