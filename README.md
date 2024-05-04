@@ -48,9 +48,10 @@ The application will typically be accessible at http://localhost:3000.
 The project structure is organized as follows:
 
 + pages: Contains Next.js page components for the different routes in your application.
-+ components: Houses reusable UI components for building your application's interface.
++ ui/components: Houses reusable UI components for building your application's interface.
 + styles: Stores CSS files for styling your components.
-+ store: Manages application state using Redux.
++ utils: repository for reusable functions and utilities
+   - store : Manages application state using Redux.
 + public: Holds static assets like images or fonts.
 ## Usage
 + Development: Use the development server for testing and making changes.
