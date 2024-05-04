@@ -134,7 +134,7 @@ export default function JobItem({ data }: { data: any }) {
           </Experience>
         </Box>
       )}
-      {data?.jdLink && <ApplyButton>⚡ Easy Apply</ApplyButton>}
+      {data?.jdLink && <ApplyButton href={data?.jdLink}>⚡ Easy Apply</ApplyButton>}
     </Container>
   );
 }
