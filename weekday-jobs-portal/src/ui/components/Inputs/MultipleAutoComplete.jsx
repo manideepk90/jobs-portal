@@ -21,6 +21,9 @@ const Label = styled("label")`
   padding: 0 0 4px;
   line-height: 1.5;
   display: block;
+  font-size: 10px;
+  margin: 6px 0 0;
+  font-weight: 500;
 `;
 
 const InputWrapper = styled("div")(
@@ -191,7 +194,12 @@ const Listbox = styled("ul")(
 `
 );
 
-export default function MultipleAutoComplete({ options, setValue, values }) {
+export default function MultipleAutoComplete({
+  options,
+  setValue,
+  values,
+  label,
+}) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -216,7 +224,7 @@ export default function MultipleAutoComplete({ options, setValue, values }) {
   return (
     <Root>
       <div {...getRootProps()}>
-        {/* <Label {...getInputLabelProps()}>Customized hook</Label> */}
+        {value.length > 0 && <Label {...getInputLabelProps()}>{label}</Label>}
         <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
           {value.map((option, index) => (
             <StyledTag label={option} {...getTagProps({ index })} />
@@ -224,6 +232,77 @@ export default function MultipleAutoComplete({ options, setValue, values }) {
           <input placeholder="Roles" {...getInputProps()} />
           <div className="end-element">
             {value.length > 0 && (
+              <CloseIcon
+                fontSize="small"
+                sx={{
+                  "&:hover": {
+                    color: "black",
+                  },
+                  transition: ".3s ease-in-out color",
+                  color: "grey",
+                }}
+                onClick={() => setValue([])}
+              />
+            )}
+            <Divider orientation="vertical" flexItem />
+            <ExpandMore
+              fontSize="small"
+              sx={{
+                "&:hover": {
+                  color: "black",
+                },
+                transition: ".3s ease-in-out color",
+
+                color: "grey",
+              }}
+            />
+          </div>
+        </InputWrapper>
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li {...getOptionProps({ option, index })}>
+              <span>{option}</span>
+              <CheckIcon fontSize="small" />
+            </li>
+          ))}
+        </Listbox>
+      ) : null}
+    </Root>
+  );
+}
+
+export function AutoComplete({ options, label }) {
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getTagProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+    value,
+    focused,
+    setAnchorEl,
+  } = useAutocomplete({
+    id: "multiple_auto_complete",
+    multiple: false,
+    // value: values,
+    options: options,
+    // onChange: (event, newValues) => {
+    //   setValue && setValue(newValues);
+    // },
+  });
+
+  return (
+    <Root>
+      <div {...getRootProps()}>
+        {value && <Label {...getInputLabelProps()}>{label}</Label>}
+        <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
+          <input placeholder={label} {...getInputProps()} />
+          <div className="end-element">
+            {value && (
               <CloseIcon
                 fontSize="small"
                 sx={{

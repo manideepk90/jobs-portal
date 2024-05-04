@@ -12,7 +12,7 @@ const initialState = {
     roles: [],
     minExperience: "",
     minSalary: "",
-    companyName: "",
+    companies: [],
   },
   selectedFilters: {
     isFiltered: false,
@@ -31,12 +31,12 @@ export const jobsSlice = createSlice({
       state.jobs = mergeAndUpdateData(state.jobs, payload.jobs, "jdUid");
       state.jobsCount = payload.jobsCount || 0;
       state.filters.roles = [...new Set(state.jobs.map((ele) => ele?.jobRole))];
+      state.filters.companies = [...new Set(state.jobs.map(ele=> ele?.companyName))]
       state.hasMore = state.jobs?.length < state.jobsCount;
       state.hasLoading = false;
     },
     setRoles(state, { payload }) {
       state.selectedFilters.roles = payload.roles;
-
       state.selectedFilters.isFiltered =
         payload.roles.length > 0 ? true : false;
       state.filterJobs = state.jobs.filter((element) =>
