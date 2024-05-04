@@ -12,13 +12,16 @@ export const jobsSlice = createSlice({
   name: "jobs",
   initialState,
   reducers: {
-    HYDRATE(state, {payload}){
-        state = {...state, ...payload}
+    HYDRATE(state, { payload }) {
+      state = { ...state, ...payload };
     },
     fetchJobs(state, { payload }) {
       state.jobs = payload.jobs;
       state.jobsCount = payload.jobsCount;
       state.hasLoading = false;
+    },
+    setLoading(state, { payload }) {
+      state.hasLoading = payload.loading;
     },
   },
 });
