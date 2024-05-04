@@ -11,11 +11,13 @@ const Container = styled(Box)({
   justifyContent: "center",
   width: "100%",
   gap: "25px",
-  padding : "20px 45px"
+  padding: "20px 45px",
 });
 
 export default function JobsList() {
-  const { jobs, hasMore } = useSelector((state) => state.jobs);
+  const { jobs, hasMore, filterJobs, selectedFilters } = useSelector(
+    (state) => state.jobs
+  );
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -75,18 +77,31 @@ export default function JobsList() {
   return (
     <>
       <Container id="list">
-        {jobs?.length > 0 &&
-          jobs?.map((ele, index) => {
-            if (index + 1 === jobs?.length)
-              return (
-                <div ref={lastElementRef}>
-                  <JobItem data={ele} key={ele?.jdUid} />;
-                </div>
-              );
-            else {
-              return <JobItem data={ele} key={ele?.jdUid} />;
-            }
-          })}
+        {selectedFilters.isFiltered
+          ? filterJobs?.length > 0 &&
+            filterJobs?.map((ele, index) => {
+              if (index + 1 === jobs?.length)
+                return (
+                  <div ref={lastElementRef}>
+                    <JobItem data={ele} key={ele?.jdUid} />;
+                  </div>
+                );
+              else {
+                return <JobItem data={ele} key={ele?.jdUid} />;
+              }
+            })
+          : jobs?.length > 0 &&
+            jobs?.map((ele, index) => {
+              if (index + 1 === jobs?.length)
+                return (
+                  <div ref={lastElementRef}>
+                    <JobItem data={ele} key={ele?.jdUid} />;
+                  </div>
+                );
+              else {
+                return <JobItem data={ele} key={ele?.jdUid} />;
+              }
+            })}
       </Container>
       {isLoading && (
         <Box
