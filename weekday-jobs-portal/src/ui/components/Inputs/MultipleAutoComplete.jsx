@@ -212,10 +212,12 @@ export default function MultipleAutoComplete({
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: "multiple_auto_complete",
+    id: React.useId(),
     multiple: true,
     value: values,
     options: options,
+    getOptionLabel: (option) => option,
+
     onChange: (event, newValues) => {
       setValue && setValue(newValues);
     },
@@ -227,7 +229,7 @@ export default function MultipleAutoComplete({
         {value.length > 0 && <Label {...getInputLabelProps()}>{label}</Label>}
         <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
           {value.map((option, index) => (
-            <StyledTag label={option} {...getTagProps({ index })} />
+            <StyledTag label={option} key={index} {...getTagProps({ index })} />
           ))}
           <input placeholder="Roles" {...getInputProps()} />
           <div className="end-element">
@@ -262,7 +264,7 @@ export default function MultipleAutoComplete({
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
+            <li key={index} {...getOptionProps({ option, index })}>
               <span>{option}</span>
               <CheckIcon fontSize="small" />
             </li>
@@ -273,7 +275,13 @@ export default function MultipleAutoComplete({
   );
 }
 
-export function AutoComplete({ options, label }) {
+export function AutoComplete({
+  options,
+  label,
+  setValue,
+  value: selectedValue,
+  defaultValue,
+}) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -286,13 +294,14 @@ export function AutoComplete({ options, label }) {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: "multiple_auto_complete",
+    id: React.useId(),
     multiple: false,
-    // value: values,
+    value: selectedValue,
     options: options,
-    // onChange: (event, newValues) => {
-    //   setValue && setValue(newValues);
-    // },
+    getOptionLabel: (option) => option,
+    onChange: (event, newValues) => {
+      setValue && setValue(newValues);
+    },
   });
 
   return (
@@ -312,7 +321,7 @@ export function AutoComplete({ options, label }) {
                   transition: ".3s ease-in-out color",
                   color: "grey",
                 }}
-                onClick={() => setValue([])}
+                onClick={() => setValue(defaultValue)}
               />
             )}
             <Divider orientation="vertical" flexItem />
@@ -333,7 +342,7 @@ export function AutoComplete({ options, label }) {
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
+            <li key={index} {...getOptionProps({ option, index })}>
               <span>{option}</span>
               <CheckIcon fontSize="small" />
             </li>

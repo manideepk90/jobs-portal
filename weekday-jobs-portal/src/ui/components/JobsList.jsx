@@ -81,9 +81,8 @@ export default function JobsList() {
   return (
     <>
       <Container id="list">
-        {selectedFilters.isFiltered
-          ? filterJobs?.length > 0 &&
-            filterJobs?.map((ele, index) => {
+        {filterJobs?.length > 0
+          ? filterJobs?.map((ele, index) => {
               if (index + 1 === jobs?.length)
                 return (
                   <div ref={lastElementRef}>
