@@ -11,10 +11,11 @@ const Container = styled(Box)({
   justifyContent: "center",
   width: "100%",
   gap: "25px",
+  padding : "20px 45px"
 });
 
 export default function JobsList() {
-  const { jobs } = useSelector((state) => state.jobs);
+  const { jobs, hasMore } = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,6 +56,7 @@ export default function JobsList() {
   const lastElementRef = useCallback(
     (node) => {
       if (isLoading) return;
+      if (!hasMore) return;
       if (observer.current) observer.current?.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
@@ -63,7 +65,7 @@ export default function JobsList() {
       });
       if (node) observer.current.observe(node);
     },
-    [isLoading]
+    [isLoading, hasMore]
   );
 
   useEffect(() => {
