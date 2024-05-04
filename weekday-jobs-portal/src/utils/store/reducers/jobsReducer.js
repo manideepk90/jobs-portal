@@ -1,3 +1,4 @@
+import { createSlice } from "@reduxjs/toolkit";
 import actions from "../../../resources/constants";
 const initialState = {
   jobs: [],
@@ -5,20 +6,17 @@ const initialState = {
   hasLoading: false,
   error: null,
 };
-export default function jobsReducer(state = initialState, { type, payload }) {
-  switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload };
-    case actions.FETCH_JOBS_SUCCESS:
-      return {
-        ...state,
-        jobs: payload.jobs,
-        jobsCount: payload.jobsCount,
-        hasLoading: false,
-      };
-    case actions.FETCH_JOBS_FAILED:
-      return { ...state, error: payload.error };
-    default:
-      return state;
-  }
-}
+
+export const jobsSlice = createSlice({
+  name: "jobs",
+  initialState,
+  reducers: {
+    fetchJobs(state, { payload }) {
+      state.jobs = payload.jobs;
+      state.jobsCount = payload.jobsCount;
+      state.hasLoading = false;
+    },
+  },
+});
+
+export default jobsSlice.reducer;

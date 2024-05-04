@@ -51,6 +51,8 @@ export default function JobItem({ data }: { data: any }) {
   const ApplyButton = styled(Button)({
     width: "100%",
     backgroundColor: "rgb(85, 239, 196)",
+    justifySelf : "end",
+    alignSelf : "end",
     color: "rgb(0, 0, 0)",
     fontWeight: 500,
     fontSize: "16px",
