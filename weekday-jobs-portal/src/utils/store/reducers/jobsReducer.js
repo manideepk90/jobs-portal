@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import actions from "../../../resources/constants";
-import { HYDRATE } from "next-redux-wrapper";
+
+import { mergeAndUpdateData } from "./../../MergeAndUpdate";
 const initialState = {
   jobs: [],
   jobsCount: 0,
@@ -16,7 +16,7 @@ export const jobsSlice = createSlice({
       state = { ...state, ...payload };
     },
     fetchJobs(state, { payload }) {
-      state.jobs = payload.jobs;
+      state.jobs = mergeAndUpdateData(state.jobs, payload.jobs, "jdUid");
       state.jobsCount = payload.jobsCount;
       state.hasLoading = false;
     },
