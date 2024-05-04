@@ -7,3 +7,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.expansion-text {
+  transition: 0.3s ease-in-out height;
+}

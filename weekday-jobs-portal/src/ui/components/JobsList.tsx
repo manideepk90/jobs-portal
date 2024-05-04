@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import JobItem from "./JobItem";
 import { Box, styled, CircularProgress } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { jobsSlice } from "@/utils/store/reducers/jobsReducer";
 
 const Container = styled(Box)({
@@ -15,13 +15,13 @@ const Container = styled(Box)({
 export default function JobsList() {
   const { jobs, isLoading } = useSelector((state: any) => state.jobs);
   const dispatch = useDispatch();
-
+  const [page, setPage] = useState(0)
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const body = JSON.stringify({
       limit: 10,
-      offset: 0,
+      offset: page,
     });
     const requestOptions = {
       method: "POST",

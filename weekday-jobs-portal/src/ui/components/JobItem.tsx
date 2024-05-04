@@ -6,6 +6,9 @@ const Container = styled(Box)({
   minWidth: "300px",
   minHeight: "20px",
   borderRadius: "20px",
+  display: "flex",
+  flexDirection: "column",
+  position: "relative",
   width: "100%",
   transition: ".5s ease-in-out transform",
   padding: "25px",
@@ -13,54 +16,58 @@ const Container = styled(Box)({
   "&:hover": {
     transform: "scale(1.025)",
   },
+  paddingBottom: "80px",
+});
+const CompanyName = styled(Typography)({
+  fontSize: "13px",
+  fontWeight: 600,
+  letterSpacing: "1px",
+  marginBottom: "3px",
+  color: "#8b8b8b",
+});
+const JobRole = styled(Typography)({
+  fontSize: "14px",
+  lineHeight: "1.5",
+});
+const JobLocation = styled(Typography)({
+  fontSize: "11px",
+  fontWeight: "600",
+  marginTop: "5px",
+});
+const EstimatedSalary = styled(Typography)({
+  fontSize: "14px",
+  fontWeight: 400,
+  color: "rgb(77, 89, 106)",
+});
+
+const ExperienceTitle = styled(Typography)({
+  fontSize: "13px",
+  fontWeight: 600,
+  letterSpacing: "1px",
+  marginBottom: "3px",
+  color: "#8b8b8b",
+});
+const Experience = styled(Typography)({
+  fontSize: "14px",
+  lineheight: 1.5,
+});
+const ApplyButton = styled(Button)({
+  width: "calc(100% - 40px)",
+  backgroundColor: "rgb(85, 239, 196)",
+  justifySelf: "flex-end",
+  alignSelf: "end",
+  color: "rgb(0, 0, 0)",
+  fontWeight: 500,
+  fontSize: "16px",
+  padding: "8px 18px",
+  borderRadius: "8px",
+  margin: "5px 0",
+  textTransform: "none",
+  position: "absolute",
+  bottom: "15px",
+  left: "20px",
 });
 export default function JobItem({ data }: { data: any }) {
-  const CompanyName = styled(Typography)({
-    fontSize: "13px",
-    fontWeight: 600,
-    letterSpacing: "1px",
-    marginBottom: "3px",
-    color: "#8b8b8b",
-  });
-  const JobRole = styled(Typography)({
-    fontSize: "14px",
-    lineHeight: "1.5",
-  });
-  const JobLocation = styled(Typography)({
-    fontSize: "11px",
-    fontWeight: "600",
-    marginTop: "5px",
-  });
-  const EstimatedSalary = styled(Typography)({
-    fontSize: "14px",
-    fontWeight: 400,
-    color: "rgb(77, 89, 106)",
-  });
-
-  const ExperienceTitle = styled(Typography)({
-    fontSize: "13px",
-    fontWeight: 600,
-    letterSpacing: "1px",
-    marginBottom: "3px",
-    color: "#8b8b8b",
-  });
-  const Experience = styled(Typography)({
-    fontSize: "14px",
-    lineheight: 1.5,
-  });
-  const ApplyButton = styled(Button)({
-    width: "100%",
-    backgroundColor: "rgb(85, 239, 196)",
-    justifySelf : "end",
-    alignSelf : "end",
-    color: "rgb(0, 0, 0)",
-    fontWeight: 500,
-    fontSize: "16px",
-    padding: "8px 18px",
-    borderRadius: "8px",
-    margin: "5px 0",
-    textTransform: "none",
-  });
   return (
     <Container>
       <Box

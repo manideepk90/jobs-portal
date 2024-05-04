@@ -27,7 +27,7 @@ export default function ReadMore({
   };
   return (
     <>
-      <JobDescription>
+      <JobDescription className="expansion-text">
         {data?.length > 300 ? (expanded ? data : data?.slice(0, 300)) : data}
       </JobDescription>
       {data?.length > 300 && expanded ? (
