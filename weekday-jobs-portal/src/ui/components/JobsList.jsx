@@ -20,12 +20,13 @@ export default function JobsList() {
   );
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-
+  const [error, setError] = useState("");
   const [page, setPage] = useState(0);
   const observer = useRef();
 
   const fetchJobs = async (limit = 10) => {
     setIsLoading(true);
+    setError("");
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const body = JSON.stringify({
@@ -53,7 +54,10 @@ export default function JobsList() {
         setPage((p) => p + 1);
         setIsLoading(false);
       })
-      .catch((error) => setIsLoading(false));
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error.response.message || "Failed to fetch jobs");
+      });
   };
   const lastElementRef = useCallback(
     (node) => {
@@ -115,6 +119,18 @@ export default function JobsList() {
         >
           <CircularProgress />
         </Box>
+      )}
+      {error != "" && (
+        <div>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              color: "red",
+            }}
+          >
+            {error}
+          </Typography>
+        </div>
       )}
     </>
   );
